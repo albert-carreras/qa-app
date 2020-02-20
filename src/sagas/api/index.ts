@@ -4,7 +4,9 @@ import dummyData from "./dummy.json";
 
 export const createQuestion = ({ question }) => {
   const failedCalled = Math.random() < 0.1;
-  return { success: failedCalled ? false : true };
+  // The "backend" saves the question and returns its id
+  const id = Math.floor(Math.random() * 1000) + 4;
+  return { success: failedCalled ? false : true, id  };
 };
 
 export const readQuestions = () => {
@@ -23,7 +25,7 @@ export const updateQuestion = ({ question }) => {
   return { success: failedCalled ? false : true };
 };
 
-export const deleteQuestion = ({ id }) => {
+export const deleteQuestion = ({ questions, all = false }) => {
   const failedCalled = Math.random() < 0.1;
   return { success: failedCalled ? false : true };
 };
