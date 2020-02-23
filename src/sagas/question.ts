@@ -53,12 +53,12 @@ export function* handleUpdateQuestion(
 ): Generator<any, any, any> {
   try {
     const response: Response = yield call(
-      // @ts-ignore
+      // @ts-ignore[]
       updateQuestion,
-      action.payload.question
+      action.payload
     );
     if (response && response.success) {
-      yield put(questionActions.updateQuestionSuccess(action.payload.question));
+      yield put(questionActions.updateQuestionSuccess(action.payload));
     }
   } catch (e) {
     console.error("Something went wrong!", e);

@@ -11,7 +11,7 @@ const getQuestions = createSelector(
 
 const getQuestionCount = createSelector(
   getQuestionState,
-  question => question.questions.length
+  question => question.questions && question.questions.length
 );
 
 export default {
