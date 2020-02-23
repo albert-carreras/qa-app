@@ -1,0 +1,16 @@
+.sidebar__container {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid grey;
+  height: 100%;
+  padding-right: 15px;
+  @media (max-width: 768px) {
+    margin-bottom: 15px;
+    text-align: center;
+    padding-right: 0;
+    padding-bottom: 15px;
+    border-right: none;
+    height: inherit;
+    border-bottom: 1px solid grey;
+  }
+}

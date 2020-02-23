@@ -4,7 +4,12 @@ import Tooltip from "components/Tooltip";
 
 import "./styles.scss";
 
-const Heading = ({ children, tooltipText }) => {
+interface Props {
+  children: String;
+  tooltipText: String;
+};
+
+const Heading = ({ children, tooltipText }: Props) => {
   return (
     <div className='heading__container'>
       <Tooltip title={tooltipText}>
