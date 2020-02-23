@@ -8,45 +8,71 @@ import {
 } from "./api";
 
 import { questionActions, questionTypes } from "state/question";
+import {
+  CreateQuestion,
+  ReadQuestions,
+  UpdateQuestion,
+  DeleteQuestion
+} from "state/question/types";
 
-export function* handleCreateQuestion(action) {
+import { Response } from "sagas/api";
+
+export function* handleCreateQuestion(
+  action: CreateQuestion
+): Generator<any, any, any> {
   try {
-    const response = yield call(createQuestion, action.payload.question);
+    const response: Response = yield call(
+      // @ts-ignore
+      createQuestion,
+      action.payload.question
+    );
     if (response && response.success) {
-      yield put(questionActions.createQuestion(action.payload.question));
+      const question = { id: response.id, ...action.payload.question };
+      yield put(questionActions.createQuestionSuccess(question));
     }
   } catch (e) {
     console.error("Something went wrong!", e);
   }
 }
 
-export function* handleReadQuestions(action) {
+export function* handleReadQuestions(
+  action: ReadQuestions
+): Generator<any, any, any> {
   try {
-    const response = yield call(readQuestions);
-    if (response && response.success) {
-      yield put(questionActions.setQuestions(response));
+    const response: Response = yield call(readQuestions);
+    if (response && response.success && response.questions) {
+      yield put(questionActions.readQuestionsSuccess(response.questions));
     }
   } catch (e) {
     console.error("Something went wrong!", e);
   }
 }
 
-export function* handleUpdateQuestion(action) {
+export function* handleUpdateQuestion(
+  action: UpdateQuestion
+): Generator<any, any, any> {
   try {
-    const response = yield call(updateQuestion, action.payload.question);
+    const response: Response = yield call(
+      // @ts-ignore
+      updateQuestion,
+      action.payload.question
+    );
     if (response && response.success) {
-      yield put(questionActions.updateQuestion(action.payload.question));
+      yield put(questionActions.updateQuestionSuccess(action.payload.question));
     }
   } catch (e) {
     console.error("Something went wrong!", e);
   }
 }
 
-export function* handleDeleteQuestion(action) {
+export function* handleDeleteQuestion(
+  action: DeleteQuestion
+): Generator<any, any, any> {
   try {
-    const response = yield call(deleteQuestion, action.payload.question.id);
+    // @ts-ignore
+    const response: Response = yield call(deleteQuestion, action.payload);
     if (response && response.success) {
-      yield put(questionActions.deleteQuestion(action.payload.question));
+      yield put(questionActions.deleteQuestionSuccess(action.payload));
     }
   } catch (e) {
     console.error("Something went wrong!", e);

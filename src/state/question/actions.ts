@@ -1,39 +1,77 @@
 import types from "./types";
+import { Question as QuestionType } from "types/common.d";
 
 const readQuestions = () => ({
   type: types.READ_QUESTIONS
 });
 
-const createQuestion = ({ question }) => ({
-  type: types.CREATE_QUESTION,
-  payload: {
-    question
-  }
-});
-const sortQuestions = ({ question }) => ({
-  type: types.SORT_QUESTIONS,
-  payload: {}
-});
-const setQuestions = ({ questions }) => ({
-  type: types.SET_QUESTIONS,
+const readQuestionsSuccess = (questions: Array<QuestionType>) => ({
+  type: types.READ_QUESTIONS_SUCCESS,
   payload: {
     questions
   }
 });
-const deleteQuestion = ({ question }) => ({
-  type: types.DELETE_QUESTION,
-  payload: {}
+
+const createQuestion = (question: QuestionType) => ({
+  type: types.CREATE_QUESTION,
+  payload: { question }
 });
-const updateQuestion = ({ question }) => ({
+
+const createQuestionSuccess = (question: QuestionType) => ({
+  type: types.CREATE_QUESTION_SUCCESS,
+  payload: { question }
+});
+
+const deleteQuestion = ({
+  questionIds = [],
+  all = false
+}: {
+  questionIds: Array<number>;
+  all: boolean;
+}) => ({
+  type: types.DELETE_QUESTION,
+  payload: {
+    questionIds,
+    all
+  }
+});
+
+const deleteQuestionSuccess = ({
+  questionIds = [],
+  all = false
+}: {
+  questionIds: Array<number>;
+  all: boolean;
+}) => ({
+  type: types.DELETE_QUESTION_SUCCESS,
+  payload: {
+    questionIds,
+    all
+  }
+});
+
+const updateQuestion = (question: QuestionType) => ({
   type: types.UPDATE_QUESTION,
-  payload: {}
+  payload: { question }
+});
+
+const updateQuestionSuccess = (question: QuestionType) => ({
+  type: types.UPDATE_QUESTION_SUCCESS,
+  payload: { question }
+});
+
+const sortQuestions = () => ({
+  type: types.SORT_QUESTIONS
 });
 
 export default {
   readQuestions,
+  readQuestionsSuccess,
   createQuestion,
-  sortQuestions,
-  setQuestions,
+  createQuestionSuccess,
   deleteQuestion,
-  updateQuestion
+  deleteQuestionSuccess,
+  updateQuestion,
+  updateQuestionSuccess,
+  sortQuestions
 };

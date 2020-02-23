@@ -1,12 +1,23 @@
 import dummyData from "./dummy.json";
 
+// Types
+import { Question as QuestionType } from "types/common.d";
+
 // One percent of the API calls fail (terrible backend)
 
-export const createQuestion = ({ question }) => {
+export interface Response {
+  success: boolean;
+  id?: number;
+  questions?: Array<QuestionType>;
+}
+
+export const createQuestion = ({ question }: { question: QuestionType }) => {
   const failedCalled = Math.random() < 0.1;
   // The "backend" saves the question and returns its id
   const id = Math.floor(Math.random() * 1000) + 4;
-  return { success: failedCalled ? false : true, id  };
+  return new Promise(resolve =>
+    resolve({ success: failedCalled ? false : true, id })
+  );
 };
 
 export const readQuestions = () => {
@@ -14,18 +25,34 @@ export const readQuestions = () => {
   if (failedCalled) {
     return { success: false };
   }
-  return {
-    success: true,
-    questions: dummyData && dummyData.questions
-  };
+  return new Promise(resolve =>
+    resolve({
+      success: true,
+      questions: dummyData && dummyData.questions
+    })
+  );
 };
 
-export const updateQuestion = ({ question }) => {
+export const updateQuestion = ({ question }: { question: QuestionType }) => {
   const failedCalled = Math.random() < 0.1;
-  return { success: failedCalled ? false : true };
+  return new Promise(resolve =>
+    resolve({
+      success: failedCalled ? false : true
+    })
+  );
 };
 
-export const deleteQuestion = ({ questions, all = false }) => {
+export const deleteQuestion = ({
+  questionIds,
+  all = false
+}: {
+  questionIds: Array<number>;
+  all: boolean;
+}) => {
   const failedCalled = Math.random() < 0.1;
-  return { success: failedCalled ? false : true };
+  return new Promise(resolve =>
+    resolve({
+      success: failedCalled ? false : true
+    })
+  );
 };

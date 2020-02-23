@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
+import { State } from "types/state";
 
-const getQuestionState = state => {
+const getQuestionState = (state: State) => {
   return state.question;
 };
 const getQuestions = createSelector(
@@ -8,6 +9,12 @@ const getQuestions = createSelector(
   question => question.questions
 );
 
+const getQuestionCount = createSelector(
+  getQuestionState,
+  question => question.questions.length
+);
+
 export default {
-  getQuestions
+  getQuestions,
+  getQuestionCount
 };
