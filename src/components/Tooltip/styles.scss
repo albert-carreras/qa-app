@@ -1,43 +1,47 @@
 :root {
-    --dark: #292929;
-    --border: 10px solid;
+  --dark: #292929;
+  --border: 10px solid;
 }
 
 .tooltip-container {
-    position: relative;
-    display: inline-flex;
-    cursor: help;
+  position: relative;
+  display: inline-flex;
+  cursor: help;
 }
 
 .tooltip-content {
-    color: #ffffff;
-    position: absolute;
-    z-index: 1;
-    padding: 12px;
-    font-size: 12px;
-    border-radius: 2px;
-    background-color: var(--dark);
-    box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.8);
-    animation: fadeIn ease-in-out 0.25s;
+  color: #ffffff;
+  position: absolute;
+  z-index: 1;
+  padding: 12px;
+  font-size: 12px;
+  border-radius: 2px;
+  background-color: var(--dark);
+  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.8);
+  animation: fadeIn ease-in-out 0.25s;
 }
 
 .bottom {
-    top: calc(100% + 8px);
-    right: -30%;
+  top: calc(100% + 8px);
+  right: -30%;
 
-    .tooltip-arrow {
-        position: absolute;
-        width: 0;
-        height: 0;
-        top: -8px;
-        left: calc(50% - 10px);
-        border-right: var(--border) transparent;
-        border-bottom: var(--border) var(--dark);
-        border-left: var(--border) transparent;
-    }
+  .tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: -8px;
+    left: calc(50% - 10px);
+    border-right: var(--border) transparent;
+    border-bottom: var(--border) var(--dark);
+    border-left: var(--border) transparent;
+  }
 }
 
 @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

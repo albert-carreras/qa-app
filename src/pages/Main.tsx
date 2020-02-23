@@ -9,10 +9,10 @@ const Main = () => (
   <>
     <h1>Very cool Q&A App</h1>
     <div className='main__container'>
-      <div className="main__left">
+      <div className='main__left'>
         <Sidebar />
       </div>
-      <div className="main__right">
+      <div className='main__right'>
         <QuestionList />
         <hr />
         <NewQuestion />

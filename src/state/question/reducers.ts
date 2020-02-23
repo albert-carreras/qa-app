@@ -55,7 +55,9 @@ const questionsReducer = (
 
     case types.SORT_QUESTIONS:
       const sorted = Array.from(
-        state.sort((a, b) => (a.question > b.question ? 1 : -1))
+        state.sort((a, b) =>
+          a.question.toLowerCase() > b.question.toLowerCase() ? 1 : -1
+        )
       );
       return sorted;
 

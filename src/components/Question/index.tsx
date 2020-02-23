@@ -9,14 +9,14 @@ import IconButton from "@material-ui/core/IconButton";
 
 import Tooltip from "components/Tooltip";
 
-import { Question as QuestionType} from "types/common.d";
+import { Question as QuestionType } from "types/common.d";
 
 import "./styles.scss";
 
 interface Props {
-  question: QuestionType,
-  deleteQuestion: Function,
-  updateQuestion: Function,
+  question: QuestionType;
+  deleteQuestion: Function;
+  updateQuestion: Function;
 }
 
 /**
@@ -36,6 +36,7 @@ const Question = ({ question, deleteQuestion, updateQuestion }: Props) => {
     question: question.question,
     answer: question.answer
   });
+
   return (
     <div className='question__container'>
       <Formik

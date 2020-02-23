@@ -9,8 +9,6 @@ import Question from "components/Question";
 
 import { questionActions, questionSelectors } from "state/question";
 
-import "./styles.scss";
-
 // Types
 import { Dispatch } from "redux";
 import { Question as QuestionType } from "types/common.d";
@@ -39,39 +37,44 @@ const QuestionList = ({
   useEffect(() => {
     readQuestions();
   }, [readQuestions]);
+
   const handleDeleteQuestion = (id: Number) => {
     deleteQuestion({ questionIds: [id], all: false });
   };
+
   const handleupdateQuestion = (question: QuestionType) => {
     updateQuestion(question);
   };
+
   return (
     <>
       <Heading tooltipText='Here you can create new questions and their answers'>
         Created Questions
       </Heading>
-      {questions && questions.length > 0 ? (
-        questions.map((question, i) => (
-          <Question
-            key={`question-${i}`}
-            question={question}
-            deleteQuestion={handleDeleteQuestion}
-            updateQuestion={handleupdateQuestion}
-          />
-        ))
-      ) : (
-        <Paper
-          variant='outlined'
-          elevation={3}
-          style={{
-            backgroundColor: "rgba(200,0,0,0.25)",
-            padding: 20,
-            color: "rgb(200,0,0)"
-          }}
-        >
-          No questions yet :-(
-        </Paper>
-      )}
+      <div>
+        {questions && questions.length > 0 ? (
+          questions.map((question, i) => (
+            <Question
+              key={`question-${i}`}
+              question={question}
+              deleteQuestion={handleDeleteQuestion}
+              updateQuestion={handleupdateQuestion}
+            />
+          ))
+        ) : (
+          <Paper
+            variant='outlined'
+            elevation={3}
+            style={{
+              backgroundColor: "rgba(200,0,0,0.25)",
+              padding: 20,
+              color: "rgb(200,0,0)"
+            }}
+          >
+            w No questions yet :-(
+          </Paper>
+        )}
+      </div>
       <br />
       <ButtonGroup variant='contained'>
         <Button

@@ -12,7 +12,7 @@ export interface Response {
 }
 
 export const createQuestion = (question: QuestionType) => {
-  const failedCalled = Math.random() < 0.1;
+  const failedCalled = Math.random() < 0.02;
   // The "backend" saves the question and returns its id
   const id = Math.floor(Math.random() * 1000) + 4;
   return new Promise(resolve =>
@@ -21,7 +21,7 @@ export const createQuestion = (question: QuestionType) => {
 };
 
 export const readQuestions = () => {
-  const failedCalled = Math.random() < 0.1;
+  const failedCalled = Math.random() < 0.02;
   if (failedCalled) {
     return { success: false };
   }
@@ -34,7 +34,7 @@ export const readQuestions = () => {
 };
 
 export const updateQuestion = (question: QuestionType) => {
-  const failedCalled = Math.random() < 0.1;
+  const failedCalled = Math.random() < 0.02;
   return new Promise(resolve =>
     resolve({
       success: failedCalled ? false : true
@@ -49,7 +49,7 @@ export const deleteQuestion = ({
   questionIds: Array<number>;
   all: boolean;
 }) => {
-  const failedCalled = Math.random() < 0.1;
+  const failedCalled = Math.random() < 0.02;
   return new Promise(resolve =>
     resolve({
       success: failedCalled ? false : true
