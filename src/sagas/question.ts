@@ -22,7 +22,6 @@ export function* handleCreateQuestion(
 ): Generator<any, any, any> {
   try {
     const response: Response = yield call(
-      // @ts-ignore
       createQuestion,
       action.payload.question
     );
@@ -53,12 +52,11 @@ export function* handleUpdateQuestion(
 ): Generator<any, any, any> {
   try {
     const response: Response = yield call(
-      // @ts-ignore[]
       updateQuestion,
-      action.payload
+      action.payload.question
     );
     if (response && response.success) {
-      yield put(questionActions.updateQuestionSuccess(action.payload));
+      yield put(questionActions.updateQuestionSuccess(action.payload.question));
     }
   } catch (e) {
     console.error("Something went wrong!", e);
@@ -69,7 +67,6 @@ export function* handleDeleteQuestion(
   action: DeleteQuestion
 ): Generator<any, any, any> {
   try {
-    // @ts-ignore
     const response: Response = yield call(deleteQuestion, action.payload);
     if (response && response.success) {
       yield put(questionActions.deleteQuestionSuccess(action.payload));

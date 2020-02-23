@@ -11,7 +11,7 @@ export interface Response {
   questions?: Array<QuestionType>;
 }
 
-export const createQuestion = ({ question }: { question: QuestionType }) => {
+export const createQuestion = (question: QuestionType) => {
   const failedCalled = Math.random() < 0.1;
   // The "backend" saves the question and returns its id
   const id = Math.floor(Math.random() * 1000) + 4;
@@ -33,7 +33,7 @@ export const readQuestions = () => {
   );
 };
 
-export const updateQuestion = ({ question }: { question: QuestionType }) => {
+export const updateQuestion = (question: QuestionType) => {
   const failedCalled = Math.random() < 0.1;
   return new Promise(resolve =>
     resolve({
